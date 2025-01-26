@@ -1,0 +1,22 @@
+files:
+- installer: N/A:Select the game's setup file
+game:
+  arch: win32
+  description: Creating Wine Prefix...
+  exe: $GAMEDIR/prefix/drive_c/Program Files/MusicBee/MusicBee.exe
+  prefix: $GAMEDIR/prefix
+  working_dir: $GAMEDIR/prefix
+installer:
+- task:
+    app: dotnet48
+    description: Installing Wine Dependencies...
+    name: winetricks
+    prefix: $GAMEDIR/prefix
+- task:
+    description: Installing MusicBee...
+    executable: installer
+    name: wineexec
+    prefix: $GAMEDIR/prefix
+- task:
+    name: winekill
+    prefix: $GAMEDIR
